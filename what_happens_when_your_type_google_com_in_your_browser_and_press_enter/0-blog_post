@@ -1,0 +1,71 @@
+When you type https://www.google.com in your browser and press Enter, a series of processes and systems work together to load the requested webpage. Here’s a breakdown covering the required topics:
+1. DNS Request
+
+The Domain Name System (DNS) translates www.google.com into its corresponding IP address.
+
+    The browser checks its cache for a DNS record. If not found, it queries a DNS resolver (e.g., your ISP or a public resolver like Google's 8.8.8.8).
+    The DNS resolver queries authoritative DNS servers if necessary, ultimately retrieving the IP address of Google's servers.
+
+2. TCP/IP
+
+Once the IP address is resolved, the browser establishes a connection using the Transmission Control Protocol (TCP) over the Internet Protocol (IP).
+
+    A three-way handshake occurs between your device and Google's server:
+        Your device sends a SYN packet to the server.
+        The server responds with a SYN-ACK packet.
+        Your device sends an ACK packet, completing the handshake.
+    This process ensures a reliable connection is established.
+
+3. Firewall
+
+Firewalls on both your device and Google’s server monitor and filter traffic to ensure security.
+
+    On your end, a local or network firewall may inspect outgoing traffic to ensure it complies with rules.
+    On Google's end, advanced firewalls protect servers from malicious traffic, blocking unauthorized or suspicious connections.
+
+4. HTTPS/SSL
+
+The https:// protocol indicates that the connection is secured using SSL/TLS encryption.
+
+    Your browser sends a ClientHello message to the server, including supported encryption protocols.
+    Google's server responds with a ServerHello, sharing its SSL/TLS certificate.
+    The browser validates the certificate (issued by a trusted Certificate Authority).
+    A shared secret is negotiated, and encrypted communication begins.
+
+5. Load Balancer
+
+Once the encrypted connection is established, your request hits Google’s load balancer.
+
+    The load balancer distributes incoming traffic among multiple backend servers to ensure availability, scalability, and reliability.
+    It may direct your request to the closest or least-busy server based on algorithms like round-robin or geographic proximity.
+
+6. Web Server
+
+The load balancer forwards your request to a web server.
+
+    The web server handles the HTTP/HTTPS request, parses it, and determines what action to take (e.g., serving a static file or passing the request to an application server).
+    Google's web server (likely a custom implementation) forwards dynamic requests to an application server.
+
+7. Application Server
+
+The application server processes dynamic content based on the logic of the requested application (e.g., search query processing).
+
+    For www.google.com, this server handles your search query by running algorithms to fetch relevant results.
+    It communicates with the database to retrieve and process data.
+
+8. Database
+
+The application server queries a database to fetch indexed data, such as web pages, images, and other content related to your search.
+
+    Google likely uses a distributed database system to handle massive volumes of data efficiently.
+    Results are processed, ranked, and sent back to the application server.
+
+Response
+
+The application server compiles the processed data and sends it to the web server. The web server packages the response and delivers it back to your browser via the load balancer.
+
+    Your browser renders the content (HTML, CSS, JavaScript) and displays the results of your query.
+
+This multi-layered process happens in milliseconds, thanks to optimizations like caching, advanced networking, and distributed systems.
+
+Link to Medium Blogpost: https://medium.com/@9430_54916/what-happens-when-you-type-https-www-google-com-in-your-browser-and-press-enter-eff8c37dc0ec
